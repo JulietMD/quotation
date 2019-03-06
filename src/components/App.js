@@ -1,14 +1,29 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { AppLoading } from 'expo';
+import PropTypes from 'prop-types';
 
-export default class App extends React.Component {
+class App extends React.Component {
   render() {
-    return (
+    const {
+      isLoaded,
+    } = this.props
+
+    return isLoaded ? (
       <View style={styles.container}>
         <Text>Open up App.js to start working on your app!</Text>
       </View>
-    );
+    ) : (
+      <AppLoading />
+    )
   }
+}
+
+App.defaultProps = {
+}
+
+App.propTypes = {
+  isLoaded: PropTypes.bool.isRequired,
 }
 
 const styles = StyleSheet.create({
@@ -19,3 +34,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App 
